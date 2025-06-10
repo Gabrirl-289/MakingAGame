@@ -72,6 +72,11 @@ public class PlayerCharacter : MonoBehaviour
     public float veryfastSpeed;
     private float OriginalMoveSpeed;
 
+
+    public Transform mainChar;
+
+    
+
     // Replace PhysicMaterial with PhysicsMaterial
     public PhysicsMaterial playerMaterial;
 
@@ -276,6 +281,11 @@ public class PlayerCharacter : MonoBehaviour
         actualWallRotation = Mathf.SmoothDamp(actualWallRotation, wallRunRotation, ref wallRotationVel, 0.2f);
         playerCam.transform.localRotation = Quaternion.Euler(xRotation, desiredX, actualWallRotation);
         orientation.transform.localRotation = Quaternion.Euler(0f, desiredX, 0f);
+
+        
+        Vector3 mainCharRotation = mainChar.transform.eulerAngles;
+        mainCharRotation.y = playerCam.eulerAngles.y;
+        mainChar.transform.eulerAngles = mainCharRotation;
     }
 
     //Make the player movement feel good 
