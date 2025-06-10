@@ -30,4 +30,31 @@ public class PortalCamera : MonoBehaviour
     private RenderTexture tempTexture2;
 
     private UnityEngine.Camera mainCamera;
+
+    private void Awake()
+    {
+        mainCamera = GetComponent<UnityEngine.Camera>();
+
+        tempTexture1 = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);
+        tempTexture2 = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);
+    }
+    private void OnEnable()
+    {
+      //  RenderPipeline.beginCameraRendering += UpdateCamera;
+
+    }
+    private void OnDisable()
+    {
+       // RenderPipeline.beginCameraRendering -= UpdateCamera;
+    }
+
+#if UNITY_RENDER_PIPELINE_UNIVERSAL
+using UnityEngine.Rendering.Universal;
+#endif
+
+    private void UpdateCamera(ScriptableRenderContext SRC, UnityEngine.Camera camera)
+    {
+        // Implementation here
+    }
 }
+
