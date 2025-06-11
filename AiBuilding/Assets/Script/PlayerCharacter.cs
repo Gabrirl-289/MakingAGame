@@ -1,4 +1,3 @@
-// PlayerMovement
 using System;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -131,6 +130,7 @@ public class PlayerCharacter : MonoBehaviour
         MyInput();
         //Looking around
         Look();
+        HandleAutoLean();
     }
 
     // In MyInput(), add running with Left Shift
