@@ -131,6 +131,14 @@ public class PlayerCharacter : MonoBehaviour
         //Looking around
         Look();
         HandleAutoLean();
+        if (grounded == false)
+        {
+            playerMaterial.dynamicFriction = 0.0f;
+        }
+        if (grounded == true)
+        {
+            playerMaterial.dynamicFriction = 0.6f;
+        }
     }
 
     // In MyInput(), add running with Left Shift
@@ -397,15 +405,15 @@ public class PlayerCharacter : MonoBehaviour
         {
             rb.AddForce(-wallNormalVector * Time.deltaTime * moveSpeed);
             rb.AddForce(Vector3.up * Time.deltaTime * rb.mass * 100f * wallRunGravity);
-            if (Input.GetKeyDown(KeyCode.LeftControl))
-            {
-                playerMaterial.dynamicFriction = 0.6f;
-            }
-            if (Input.GetKeyUp(KeyCode.LeftControl))
-            {
-                playerMaterial.dynamicFriction = 0f;
-            }
+           // playerMaterial.dynamicFriction = 0.0f;
+            
+                
+            
         }
+        //if(!wallRunning && playerMaterial.dynamicFriction != 0.6f)
+        //{
+        //    playerMaterial.dynamicFriction = 0.6f;
+        //}
     }
 
     private bool IsFloor(Vector3 v)
